@@ -125,6 +125,8 @@ Adaptive distance and predicted vaccine efficacy of the candidate vaccine virus 
 
 ### Background files
 
+Two background files containing enrichment scores are necessary for "MADE.R".
+
 #### File I : enrichment_scores_329codons
 
 All alleles and their enrichment scores acorss 329 codon positions are recorded.
