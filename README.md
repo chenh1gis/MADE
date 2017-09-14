@@ -113,7 +113,8 @@ Adaptive distance and predicted vaccine efficacy of the candidate vaccine virus 
     
     Windows R environment:
     
-    `Args[1]<-"14alleles.txt";
+    `Args <- commandArgs(trailingOnly = TRUE);
+    Args[1]<-"14alleles.txt";
     Args[2]<-"Correlation_AdaptiveDistance_VE.pdf";
     Args[3]<-"Value_AdaptiveDistance_VE.txt";
     source("MADE.R")`
