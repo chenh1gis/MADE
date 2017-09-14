@@ -24,40 +24,17 @@ Let’s briefly summarize conceptual steps behind MADE:
 
 MADE is written in perl and R.
 
-MADE can be downloaded from github: https://github.com/Emma-CH/PreVEAB
+MADE can be downloaded from github: https://github.com/chenh1gis/MADE
 
 
 ## Running
-
-To run the program, two background enrichment scores files and one alleles file are necessary. 
-Regarding to the alleles file, users are able to either directly provide it (Input files - Option I) or generate it using perl script "extract_alleles.pl" from a nucleotide sequence file (Input files - Option II).
-"PreVEAB.R" targets to generate two outfiles carrying the information of adaptive distance and predicted vaccine efficacy of candidate vaccine virus isolate.
-
-
-### Background ES files
-
-#### File I : ES_EggStrains
-
-All alleles and their enrichment scores acorss 329 codon positions are recorded as following:
-
-    Codon   AminoAcid EnrichmentScore
-      1         H          1.384
-      1         S          0.000
-      1         Q          0.995
-
-#### File II : GISAID_32278_H3N2_HA1_ES_byJul2016
-
-Enrichment scores of 14 alleles over 14 codon positions are extracted for 32,278 background and 61 vaccine virus strains, listed as following: 
-
-     ID              Year       Passage     138    145    156    158    159    160    183    186    190    193    194    219    226    246
-     EPI_ISL_167277  2003     EGG_VACCINE  0.936  1.436  1.475  0.832  1.039  1.235  10.236  3.513  0.828  1.297  0.707  0.857 0.597  0.936
-     EPI_ISL_174195  2003     EGG_VACCINE  0.936  1.436  1.475  0.664  1.039  1.235  10.236  3.513  0.828  1.297  0.707  0.857 0.597  0.936
-     EPI_ISL_2674    2003     EGG_VACCINE  0.936  1.436  1.475  0.664  1.039  1.235   0.945  3.513  0.828  1.297  11.77  0.857 0.597  0.936    
+ 
+To run the program, two background files containing enrichment scores and one file (defined as the allele file) containing the alleles at the 14 codon positions for the isolate are of interest. User can either directly provide the allele file (Input files) or generate it using perl script "extract_alleles.pl" from a nucleotide sequence file (Input files). "PreVEAB.R" will produce two output files carrying the information of adaptive distance and predicted vaccine efficacy of candidate vaccine virus isolate.
 
 
 ### Input files
 
-#### Option I : 14 alleles file
+#### 14 alleles file
 
 14 alleles over 14 codon positions (including 138, 145, 156, 158, 159, 160, 183, 186, 190, 193, 194, 219, 226 and 246) should be listed in two columns as following:
 
@@ -66,8 +43,7 @@ Enrichment scores of 14 alleles over 14 codon positions are extracted for 32,278
      145        N 
      156        H
 
-Note: 1) Please make sure that the 14 codons described in alleles file are exactly consistent with the codon positions selected by our  statistical methods.
-2) Please be aware that if any allele state is missing or its enrichment score is not recorded in file "ES_EggStrains", the analysis will be terminated immediately.
+Note: 1) Please be aware that if any allele state is missing or its enrichment score is not recorded in file "ES_EggStrains", the analysis will be terminated immediately.
 
 #### Option II : H3N2 HA1 nucleotide sequence file
 
@@ -155,6 +131,17 @@ Scatterplot figure describes the strongly negative correlation between adaptive 
     
     Note: Please make sure the alleles file "DEMO" and two background enrichment scores files "ES_EggStrains" and  
     "GISAID_32278_H3N2_HA1_ES_byJul2016" are all accessible under current directory.
+
+
+### Supportive files
+
+#### File I : ES_EggStrains
+
+All alleles and their enrichment scores acorss 329 codon positions are recorded as following:
+
+#### File II : GISAID_32278_H3N2_HA1_ES_byJul2016
+
+Enrichment scores of 14 alleles over 14 codon positions are extracted for 32,278 background and 61 vaccine virus strains, listed as following: 
 
 
 ## Author
