@@ -1,24 +1,30 @@
-# PreVEAB
-PreVEAB considers the influenza A H3N2 hemagglutinin (HA) nucleotide sequence or amino acid states from the 14 pre-defined codon positions and aims to measure the passage adaptation and predict the vaccine efficacy of the candidate vaccine virus isolate.
+# MADE
+MADE (Measuring Adaptive Distance and vaccine Efficacy using allelic barcodes) is a computational package calibrating the strength of passage adaptation happened in a given isolate (strain). The strength of the passage adaptation is defined as the Adaptive Distance (AD) between the center of the major cluster of all isolates in the database and the strain of interest in the principle component analysis (PCA)(See Chen et al for details). Since adaptive distance is found to be negatively correlated with the vaccine efficacy, MADE will also predict potential vaccine efficacy of the input isolate using its nucleotide sequence.  
 
 
 ## Background
-Vaccine efficacy of influenza A H3N2 virus has sharply dropped recently, which might be majorly contributed by virus antigenic drift or mutations occurring during vaccine production. Since WHO always considers the antigenic properties during the vaccine virus selection and antigenic cluster transitions occur every 3.3 years on average which is not consistent with the continuously decreasing of vaccine efficacy, attentions are put on the mutations occurring during vaccine manufacture. 
+Vaccine efficacy for the influenza A H3N2 virus has dropped rapidly in the past few years. Antigenic drift and passage adaptation (mutations occurring during vaccine production) are known to cause mismatches between vaccine isolates and circulating strains, leading to low effective vaccines. 
 
-The mutations accumulated during virus propagation in hosts or cells such as embryonated eggs and mammalian cell lines are defined as passage adaption. And it has been well known that the seed precursor influenza virus used for vaccine production must be generated in eggs, which in turn to causes the egg passage adaptation happened during the vaccine production. Hereby, to find out the impact of egg passage adaptation on vaccine efficacy seems urgent and meaningful.
+Passage adaptation refers to mutations accumulated during virus propagation in the growth medium (e.g. embryonated eggs or mammalian cell lines). It has been well known that the seed precursor influenza virus used for vaccine production must be generated in eggs and subsequent vaccine production will also often be generated using embryonated eggs. Both of these two factors will lead to egg passage adaptation during vaccine production.
 
-32,278 H3N2 HA1 sequences as well as accessible passage annotation information were collected from Global Initiative on Sharing All Influenza Data (GISAID) EpiFlu database. According to these information, a probabilistic method was applied to sample the mutational histories. Furthermore, 14 codon positions were identified under strong passage adaptation in embyonated egg using statistical methods.
+When selecting a candidate isolate as the vaccine strain, WHO only considers the antigenic property of the isolate, trying to match the vaccine to the antigenic characteristics of the circulating strains. Since antigenic properties of the circulating strains shift every 3.3 years [Smith et al 2004], antigenic drift might not be a major determining factor for the recent reduction in vaccine efficacy. As shown in Chen et al study, passage adaptation in the embryonated egg is found to be a major determinant of the vaccine efficacy. MADE implemented the latest idea from Chen et al work measuring the strength of passage adaptation and predict vaccine efficacy for an input isolate. 
 
-In order to quantitatively measure the strength of passage adaptation, enrichment scores (ES) of alleles from 14 pre-defined codon positions were calculated for 32,278 background virus sequences and 61 vaccine virus sequences. Principle component analysis (PCA) uncovered the different distributions of background and vaccine strains, and vaccine strains (distantly located from the major clustering of background strains) clearly beared significant evidence of passage adaptation. Subsequently, adaptive distance was defined to measure the strength of passage adaptation.
+Let’s briefly summarize conceptual steps behind MADE: 
 
-Trends of adaptive distances and vaccine efficacies ranged from 2010 to 2014 year indicated the essential contribution of egg passage adaptation to the reduced vaccine efficacy. Therefore, we developed this computational strategy which provides a way to measure the adaptive distance of candidate vaccine virus strain and in further predict the vaccine efficacy for public consideration. 
+1)	Using a large dataset (32,278 H3N2 HA1 sequences) curated from Global Initiative on Sharing All Influenza Data (GISAID) EpiFlu database, we employed a probabilistic approach known as the mutational mapping to infer the possible evolutionary histories of the dataset. 
 
+2)	Given the inferred evolutionary history, we developed two statistical tests known as the enrichment and convergent test to identify codon positions driven by passage adaptation in the embryonated egg.  Applying the statistical test, we identified 14 codons driven by passage adaptation in the embryonated egg. 
+
+3)	Statistical analysis found that substitutions happened in the 14 codons are highly convergent. In other words, egg passage medium will drive repeated evolution of certain amino acid changes (e.g. from X to Y). This will lead to alleles specific to the egg passage strains. In this case, Y allele will show high frequency in the egg passaged strains (defined as pegg) comparing to the background (in all strains, defined as pall). Using the ratio between pegg and pall, we defined the enrichment score for every allele observed at the 14 codons. 
+
+4)	In order to quantitatively measure the strength of passage adaptation, enrichment scores (ES) of the alleles at these 14 codon positions were calculated first. Among all 32,278 sequences, the alleles observed at the 14 codons will define a 14 dimensional enrichment score for each isolate. Projecting the 14 dimensional space into a PCA map, we found that most of the isolates are clustered together in a major cluster. Interestingly, egg passaged strains show high deviation from the major cluster reflecting the effect of passage adaptation.  We defined the adaptive distance (AD) as the distance between the isolate of interest and the center of the major cluster. As shown in Chen et al study, Adaptive distance (AD) negatively correlate with the vaccine efficacy. Using historical data from 2010-2015, MADE will predict the vaccine efficacy based on the adaptive distance calibrated for the isolate of interest. 
+ 
 
 ## Installing
 
-PreVEAB is written in perl and R.
+MADE is written in perl and R.
 
-PreVEAB can be downloaded from github: https://github.com/Emma-CH/PreVEAB
+MADE can be downloaded from github: https://github.com/Emma-CH/PreVEAB
 
 
 ## Running
