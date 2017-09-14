@@ -1,4 +1,7 @@
-Args <- commandArgs(trailingOnly = TRUE)
+#Args <- commandArgs(trailingOnly = TRUE)
+#Args[1]<-"14alleles.txt";
+#Args[2]<-"Correlation_AdaptiveDistance_VE.pdf";
+#Args[3]<-"Value_AdaptiveDistance_VE.txt";
 
 DEMO=read.table(Args[1], header=TRUE, sep="\t")
 OR=read.table("enrichment_scores_329codons", header=TRUE, sep="\t")
