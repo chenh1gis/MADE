@@ -109,13 +109,13 @@ Adaptive distance and predicted vaccine efficacy of the candidate vaccine virus 
     
     Windows CMD command:
     
-    `"C:\Program Files\R\R-3.4.1\bin\Rscript.exe" MADE.R 14alleles.txt Correlation_AdaptiveDistance_VE.pdf Value_AdaptiveDistance_VE`
+    `"C:\Program Files\R\R-3.4.1\bin\Rscript.exe" MADE.R 14alleles.txt Correlation_AdaptiveDistance_VE.pdf Value_AdaptiveDistance_VE.txt`
     
     Windows R environment:
     
     `Args[1]<-"14alleles.txt";
     Args[2]<-"Correlation_AdaptiveDistance_VE.pdf";
-    Args[3]<-"Value_AdaptiveDistance_VE";
+    Args[3]<-"Value_AdaptiveDistance_VE.txt";
     source("MADE.R")`
     
     Note: Please make sure the alleles file "14alleles.txt" and two background enrichment scores files "enrichment_scores_329codons" and 
