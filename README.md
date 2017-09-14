@@ -29,7 +29,7 @@ MADE can be downloaded from github: https://github.com/chenh1gis/MADE
 
 ## Running
  
-To run the program, two background files containing enrichment scores and one file (defined as the allele file) containing the alleles at the 14 codon positions for the isolate are of interest. User can either directly provide the allele file (Input files) or generate it using perl script "extract_alleles.pl" from a nucleotide sequence file (Input files). "PreVEAB.R" will produce two output files carrying the information of adaptive distance and predicted vaccine efficacy of candidate vaccine virus isolate.
+To run the program, two background files containing enrichment scores and one file (defined as the allele file) containing the alleles at the 14 codon positions for the isolate are of interest. User can either directly provide the allele file (Input files) or generate it using perl script "extract_alleles.pl" from a nucleotide sequence file (Input files). "PreVEAB.R" will produce two output files carrying the information of adaptive distance and predicted vaccine efficacy of candidate vaccine virus isolate (Output files).
 
 
 ### Input files
@@ -45,15 +45,7 @@ To run the program, two background files containing enrichment scores and one fi
 
 Note: 1) Please be aware that if any allele state is missing or its enrichment score is not recorded in file "ES_EggStrains", the analysis will be terminated immediately.
 
-#### Option II : H3N2 HA1 nucleotide sequence file
-
-The H3N2 HA1 nucleotide sequence should be saved following the standard formats:
-    
-    *format 1*
-    
-    CAAAAACTTCCTGGAAATGACAACAGCACGGCAACGCTGTGCCTTGGGCA...
-    
-    *format 2*
+Alternatively, 14 alleles file is generated from a H3N2 HA1 nucleotide sequence file following the standard FASTA file formats:
     
     >Seq_ID
     
