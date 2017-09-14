@@ -113,12 +113,12 @@ Adaptive distance and predicted vaccine efficacy of the candidate vaccine virus 
     
     Windows R environment:
     
-    `Args[1]<-"14alleles.txt"
-    Args[2]<-"Correlation_AdaptiveDistance_VE.pdf"
-    Args[3]<-"Value_AdaptiveDistance_VE"
+    `Args[1]<-"14alleles.txt";
+    Args[2]<-"Correlation_AdaptiveDistance_VE.pdf";
+    Args[3]<-"Value_AdaptiveDistance_VE";
     source("MADE.R")`
     
-    Note: Please make sure the alleles file "14alleles.txt" and two background enrichment scores files "enrichment_scores_329codons" and  
+    Note: Please make sure the alleles file "14alleles.txt" and two background enrichment scores files "enrichment_scores_329codons" and 
     "14alleles_background_strains" are all accessible under current directory.
 
 
