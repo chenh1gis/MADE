@@ -29,12 +29,12 @@ MADE can be downloaded from github: https://github.com/chenh1gis/MADE
 
 ## Running
  
-To run the program, two background files containing enrichment scores and one file (defined as the allele file) containing the alleles at the 14 codon positions for the isolate are of interest. User can either directly provide the allele file (Input files) or generate it using perl script "extract_alleles.pl" from a nucleotide sequence file (Input files). "PreVEAB.R" will produce two output files carrying the information of adaptive distance and predicted vaccine efficacy of candidate vaccine virus isolate (Output files).
+To run the program, two background files containing enrichment scores and one file (defined as the allele file) containing the alleles at the 14 codon positions for the isolate are of interest. User can either directly provide the allele file (Input files) or generate it using perl script "extract_14alleles.pl" from a nucleotide sequence file (Input files). "MADE.R" will produce two output files carrying the information of adaptive distance and predicted vaccine efficacy of candidate vaccine virus isolate (Output files).
 
 
 ### Input files
 
-#### 14 alleles file
+#### 14 alleles file (e.g. 14alleles.txt)
 
 14 alleles over 14 codon positions (including 138, 145, 156, 158, 159, 160, 183, 186, 190, 193, 194, 219, 226 and 246) should be listed in two columns as following:
 
@@ -45,7 +45,7 @@ To run the program, two background files containing enrichment scores and one fi
 
 Note: 1) Please be aware that if any allele state is missing or its enrichment score is not recorded in file "ES_EggStrains", the analysis will be terminated immediately.
 
-Alternatively, 14 alleles file is generated from a H3N2 HA1 nucleotide sequence file following the standard FASTA file formats:
+Alternatively, 14 alleles file is generated from a H3N2 HA1 nucleotide sequence file (e.g. H3N2_HA1_nucleotide_sequence.fa) following the standard FASTA file formats:
     
     >Seq_ID
     
@@ -53,17 +53,10 @@ Alternatively, 14 alleles file is generated from a H3N2 HA1 nucleotide sequence 
 
 Note: 1) Please be very careful about the starting codons, and guarantee that the sequence starts from "QNL...".
 2) Please be aware that if any allele state is missing or its enrichment ecore is not recorded in file "ES_EggStrains", the analysis will be terminated immediately.
-3) The corresponding alleles file will be generated using "extract_allele.pl".
+3) The corresponding alleles file will be generated using "extract_14alleles.pl".
 
 
 ### Output files
-
-#### Adaptive distance & predicted vaccine efficacy (e.g. outfile.txt)
-
-Adaptive distance and predicted vaccine efficacy of the candidate vaccine virus isolate are listed out:
-
-    Vaccine efficacy = 0.17
-    Adaptive distance = 21.64
 
 #### PCA & Scatterplot (e.g. Correlation_AdaptiveDistance_VE.pdf)
 
@@ -71,69 +64,73 @@ PCA figure describes the distribution of 32,278 background virus strains (repres
 
 Scatterplot figure describes the strongly negative correlation between adaptive distance and vaccine efficacy. R square value labeled at the topright is provided as well. The adaptive distance and predicted vaccine efficacy of the candidate vaccine virus isolate are also described in the figure.
 
+#### Adaptive distance & predicted vaccine efficacy (e.g. Value_AdaptiveDistance_VE.txt)
+
+Adaptive distance and predicted vaccine efficacy of the candidate vaccine virus isolate are listed out:
+
 
 ### Commands
 
 * Extract the 14 allelic states from the nucleotide sequence, using the option:
 
-    `perl extract_alleles.pl [input_sequence_file] [output_allelic_file]`
+    `perl extract_14alleles.pl [input_sequence_file] [output_allelic_file]`
 
 * Predict the vaccine efficacy of candidate vaccine virus isolate, using the option:
 
     Unix command:
     
-    `Rscript PreVEAB.R [input_allelic_file] [output_pdf_file] [output_txt_file]`
+    `Rscript MADE.R [input_14allele_file] [output_correlation_file] [output_value_file]`
 
     Windows CMD command:
    
-    `Rscript.exe [input_allelic_file] [output_pdf_file] [output_txt_file]`
+    `Rscript.exe MADE.R [input_14allele_file] [output_correlation_file] [output_value_file]`
 
     Windows R environment:
     
-    `Args[1]<-[input_allelic_file]
-    Args[2]<-[output_pdf_file]
-    Args[3]<-[output_txt_file]
-    source("PreVEAB.R")`
+    `Args[1]<-[input_14allele_file]
+    Args[2]<-[output_correlation_file]
+    Args[3]<-[output_value_file]
+    source("MADE.R")`
 
 
 ### Examples
 
 * Extract the 14 allelic states from the nucleotide sequence, using the option:
 
-    `perl extract_alleles.pl DEMO_seq DEMO`
+    `perl extract_14alleles.pl H3N2_HA1_nucleotide_sequence.fa 14alleles.txt`
     
-    Note: Please make sure that the input file "DEMO_seq" is accessible under current directory.
+    Note: Please make sure that the input file "H3N2_HA1_sequence.fa" is accessible under current directory.
 
 * Predicted vaccine efficacy of candidate vaccine virus isolate, using the option:
 
     Unix command:
     
-    `Rscript PreVEAB.R DEMO Correlation_AdaptiveDistance_VE.pdf outfile.txt`
+    `Rscript MADE.R 14alleles.txt Correlation_AdaptiveDistance_VE.pdf Value_AdaptiveDistance_VE.txt`
     
     Windows CMD command:
     
-    `"C:\Program Files\R\R-3.4.1\bin\Rscript.exe" DEMO Correlation_AdaptiveDistance_VE.pdf outfile.txt`
+    `"C:\Program Files\R\R-3.4.1\bin\Rscript.exe" MADE.R 14alleles.txt Correlation_AdaptiveDistance_VE.pdf Value_AdaptiveDistance_VE`
     
     Windows R environment:
     
-    `Args[1]<-"DEMO"
+    `Args[1]<-"14alleles.txt"
     Args[2]<-"Correlation_AdaptiveDistance_VE.pdf"
     Args[3]<-"outfile.txt"
-    source("PreVEAB.R")`
+    source("MADE.R")`
     
-    Note: Please make sure the alleles file "DEMO" and two background enrichment scores files "ES_EggStrains" and  
+    Note: Please make sure the alleles file "14alleles.txt" and two background enrichment scores files "ES_EggStrains" and  
     "GISAID_32278_H3N2_HA1_ES_byJul2016" are all accessible under current directory.
 
 
 ### Supportive files
 
-#### File I : ES_EggStrains
+#### File I : EnrichmentScore_329codons
 
-All alleles and their enrichment scores acorss 329 codon positions are recorded as following:
+All alleles and their enrichment scores acorss 329 codon positions are recorded.
 
-#### File II : GISAID_32278_H3N2_HA1_ES_byJul2016
+#### File II : 14alleles_background_strains
 
-Enrichment scores of 14 alleles over 14 codon positions are extracted for 32,278 background and 61 vaccine virus strains, listed as following: 
+Enrichment scores of 14 alleles over 14 codon positions are extracted for 32,278 background and 61 vaccine virus strains.
 
 
 ## Author
