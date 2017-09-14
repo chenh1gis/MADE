@@ -3,7 +3,7 @@ Args <- commandArgs(trailingOnly = TRUE)
 DEMO=read.table(Args[1], header=TRUE, sep="\t")
 OR=read.table("enrichment_scores_329codons", header=TRUE, sep="\t")
 
-GISAID=read.table("14_alleles_background_strains", header=TRUE, sep="\t")
+GISAID=read.table("14alleles_background_strains", header=TRUE, sep="\t")
 GISAID[,c(1,3)] <- sapply(GISAID[,c(1,3)],as.character) 
 GISAID[nrow(GISAID) + 1,1:3] = c("TEST","NA","TEST")
 
