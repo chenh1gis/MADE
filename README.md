@@ -52,7 +52,7 @@ Alternatively, 14 alleles file is generated from a H3N2 HA1 nucleotide sequence 
     CAAAAACTTCCTGGAAATGACAACAGCACGGCAACGCTGTGCCTTGGGCA...
 
 Note: 1) Please be very careful about the starting codons, and guarantee that the sequence starts from "QNL...".
-2) Please be aware that if any allele state is missing or its enrichment ecore is not recorded in file "enrichment_scores_329codons", the analysis will be terminated immediately.
+2) Please be aware that if any allele state is missing or its enrichment score is not recorded in file "enrichment_scores_329codons", the analysis will be terminated immediately.
 3) The corresponding alleles file will be generated using "extract_14alleles.pl".
 
 
@@ -130,7 +130,7 @@ Two background files containing enrichment scores are necessary for "MADE.R".
 
 #### File I : enrichment_scores_329codons
 
-All alleles and their enrichment scores acorss 329 codon positions are recorded.
+All alleles and their enrichment scores across 329 codon positions are recorded.
 
 #### File II : 14alleles_background_strains
 
