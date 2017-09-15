@@ -29,7 +29,7 @@ MADE can be downloaded from github: https://github.com/chenh1gis/MADE
 
 ## Running
  
-To run the program, two background files containing enrichment scores and one file (defined as the allele file) containing the alleles at the 14 codon positions for the isolate are of interest. User can either directly provide the allele file (Input files) or generate it using perl script "extract_14alleles.pl" from a nucleotide sequence file (Input files). "MADE.R" will produce two output files describing adaptive distance and predicted vaccine efficacy of candidate vaccine virus isolate (Output files).
+To run the program, two background files containing enrichment scores and one file (defined as the allele file) containing the alleles at the 14 codon positions for the isolate are of interest. User can either directly provide the allele file (Input files) or generate it using perl script "extract_14alleles.pl" from a nucleotide sequence file (Input files). "MADE.R" will produce two output files describing the correlation between adaptive distance and predicted vaccine efficacy of candidate vaccine virus isolate (Output files).
 
 
 ### Input files
@@ -60,7 +60,7 @@ Note: 1) Please be very careful about the starting codons, and guarantee that th
 
 #### PCA & Scatterplot (e.g. Correlation_AdaptiveDistance_VE.pdf)
 
-PCA figure describes the distribution of 32,278 background virus strains (represented by 32,278 dots)　in terms of the first and second PCA dimensions. The dot highlighted in black color represents the candidate vaccine virus isolate under current analysis.
+PCA figure describes the distribution of 32,278 background virus strains (represented by 32,278 dots) in terms of the first and second PCA dimensions. The dot highlighted in black color represents the candidate vaccine virus isolate under current analysis.
 
 Scatterplot figure describes the strongly negative correlation between adaptive distance and vaccine efficacy. R square value labeled at the topright is provided as well. The adaptive distance and predicted vaccine efficacy of the candidate vaccine virus isolate are also described in the figure.
 
@@ -73,9 +73,9 @@ Adaptive distance and predicted vaccine efficacy of the candidate vaccine virus 
 
 * Extract the 14 allelic states from the nucleotide sequence, using the option:
 
-    `perl extract_14alleles.pl [input_sequence_file] [output_allelic_file]`
+    `perl extract_14alleles.pl [input_sequence_file] [output_allele_file]`
 
-* Predict the vaccine efficacy of candidate vaccine virus isolate, using the option:
+* Calculate adaptive distances and predict the vaccine efficacy of candidate vaccine virus isolate, using the option:
 
     Unix command:
     
@@ -87,9 +87,10 @@ Adaptive distance and predicted vaccine efficacy of the candidate vaccine virus 
 
     Windows R environment:
     
-    `Args[1]<-[input_14alleles_file]
-    Args[2]<-[output_correlation_file]
-    Args[3]<-[output_value_file]
+    `Args <- commandArgs(trailingOnly = TRUE);
+    Args[1]<-[input_14alleles_file];
+    Args[2]<-[output_correlation_file];
+    Args[3]<-[output_value_file];
     source("MADE.R")`
 
 
@@ -101,7 +102,7 @@ Adaptive distance and predicted vaccine efficacy of the candidate vaccine virus 
     
     Note: Please make sure that the input file "H3N2_HA1_sequence.fa" is accessible under current directory.
 
-* Predicted vaccine efficacy of candidate vaccine virus isolate, using the option:
+* Calculate adaptive distances and predicted vaccine efficacy of candidate vaccine virus isolate, using the option:
 
     Unix command:
     
